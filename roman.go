@@ -1,3 +1,4 @@
+// Package roman provides a converter for integer to roman numbers
 package roman
 
 import (
@@ -5,11 +6,11 @@ import (
 )
 
 // RomanValueOf converts an integer to a roman string
-// +------+-----+-----+-----+-----+-----+-----+-----+-----+------+
-// | Char |  I  |  V  |  X  |  L  |  C  |  D  |  M  |  ↁ  |  ↂ  |
-// | Value|  1  |  5  | 10  | 50  | 100 | 500 | 1000| 5000| 10000|
-// +------+-----+-----+-----+-----+-----+-----+-----+-----+------+
 func RomanValueOf(n int) string {
+	// +------+-----+-----+-----+-----+-----+-----+-----+-----+------+
+	// | Char |  I  |  V  |  X  |  L  |  C  |  D  |  M  |  ↁ  |  ↂ  |
+	// | Value|  1  |  5  | 10  | 50  | 100 | 500 | 1000| 5000| 10000|
+	// +------+-----+-----+-----+-----+-----+-----+-----+-----+------+
 	var transTab = []struct {
 		old string
 		new string
