@@ -44,7 +44,6 @@ func RomanValueOf(n int) string {
 }
 
 // Convert the argument Roman string to an arabic integer.
-// Returns -1 if not a valid Roman number.
 func ArabicValueOf(roman string) int {
 
 	r2a := map[rune]int{
