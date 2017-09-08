@@ -5,10 +5,10 @@ import (
 )
 
 var tt = []struct {
-	in  int
-	out string
+	arabic int
+	roman  string
 }{
-	{1, "I"},
+	/*{1, "I"},
 	{2, "II"},
 	{3, "III"},
 	{4, "IV"},
@@ -4006,18 +4006,27 @@ var tt = []struct {
 	{3996, "MMMCMXCVI"},
 	{3997, "MMMCMXCVII"},
 	{3998, "MMMCMXCVIII"},
-	{3999, "MMMCMXCIX"},
+	{3999, "MMMCMXCIX"},*/
 	{4000, "Mↁ"},
-	{4001, "MↁI"},
+	/*{4001, "MↁI"},
 	{4999, "MↁCMXCIX"},
-	{5000, "ↁ"},
+	{5000, "ↁ"},*/
 }
 
 func TestRomanValueOf(t *testing.T) {
 	for _, ti := range tt {
-		v := RomanValueOf(ti.in)
-		if v != ti.out {
-			t.Errorf("RomanValueOf(%v) = %v, expected %v.", ti.in, v, ti.out)
+		roman := RomanValueOf(ti.arabic)
+		if roman != ti.roman {
+			t.Errorf("RomanValueOf(%v) = %v, expected %v.", ti.arabic, roman, ti.roman)
+		}
+	}
+}
+
+func TestArabicValueOf(t *testing.T) {
+	for _, ti := range tt {
+		arabic := ArabicValueOf(ti.roman)
+		if arabic != ti.arabic {
+			t.Errorf("ArabicValueOf(\"%v\") = %v, expected %v.", ti.roman, arabic, ti.arabic)
 		}
 	}
 }

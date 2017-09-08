@@ -42,3 +42,34 @@ func RomanValueOf(n int) string {
 	}
 	return r
 }
+
+// Convert the argument Roman string to an arabic integer.
+// Returns -1 if not a valid Roman number.
+func ArabicValueOf(roman string) int {
+
+	r2a := map[rune]int{
+		'I': 1,
+		'V': 5,
+		'X': 10,
+		'L': 50,
+		'C': 100,
+		'D': 500,
+		'M': 1000,
+		'ↁ': 5000,
+		'ↂ': 10000,
+	}
+
+	last := 10000
+	arabic := 0
+	c := []rune(roman)
+	for _, chr := range c {
+		current := r2a[chr]
+		// apply substraction rule if current value gt last. E.g. IX
+		if last < current {
+			arabic -= 2 * last
+		}
+		last = current
+		arabic += current
+	}
+	return arabic
+}
