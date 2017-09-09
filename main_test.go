@@ -6,5 +6,6 @@ import (
 )
 
 func TestMain(t *testing.T) {
-	os.Exit(1)
+	os.Args = append(os.Args, "4000")
+	main()
 }

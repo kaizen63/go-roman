@@ -27,12 +27,20 @@ func main() {
 		}
 		defer pprof.StopCPUProfile()
 	}
-	max, err := strconv.Atoi(flag.Args()[0])
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(2)
-	}
 
+	args := flag.Args()
+	var max int
+	var err error
+	if len(args) > 0 {
+		max, err = strconv.Atoi(flag.Args()[0])
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(2)
+		}
+	} else {
+		fmt.Println("usage: go-roman <max>")
+		os.Exit(3)
+	}
 	for i := 1; i <= max; i++ {
 		fmt.Println(roman.RomanValueOf(i))
 	}
