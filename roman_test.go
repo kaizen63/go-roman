@@ -4020,6 +4020,10 @@ func TestRomanValueOf(t *testing.T) {
 			t.Errorf("RomanValueOf(%v) = %v, expected %v.", ti.arabic, roman, ti.roman)
 		}
 	}
+	v := RomanValueOf(-1)
+	if v != "ROMAN_OUT_OF_RANGE" {
+		t.Errorf("ArabicValueOf(\"%v\" = %v, expected ROMAN_OUT_RANGE", -1, v)
+	}
 }
 
 func TestArabicValueOf(t *testing.T) {
