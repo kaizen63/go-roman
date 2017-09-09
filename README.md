@@ -1,7 +1,9 @@
+[![Build Status](https://travis-ci.org/kaizen63/go-roman.svg?branch=master)](https://travis-ci.org/kaizen63/go-roman)
+
 # go-roman
 
-A small package to convert integers to roman numbers
-
+A small package to convert integers to roman numbers. The intersting bit is that the conversion into roman is not a mathematical solution. Its pure text processing.
+Kudos to Kevlin Hennley for this solution (although it was not in go)
 ## Example
 ```
 package main
