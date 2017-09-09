@@ -9,7 +9,7 @@ import (
 	"runtime/pprof"
 	"strconv"
 
-	"./roman"
+	"github.com/kaizen63/go-roman/roman"
 )
 
 var cpuprofile = flag.String("cpuprofile", "", "write cpu profile `file`")
