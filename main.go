@@ -18,11 +18,11 @@ func main() {
 		max, err = strconv.Atoi(args[0])
 		if err != nil {
 			fmt.Println(err)
-			os.Exit(2)
+			os.Exit(1)
 		}
 	} else {
 		fmt.Println("usage: go-roman <max>")
-		os.Exit(3)
+		os.Exit(1)
 	}
 	for i := 1; i <= max; i++ {
 		fmt.Println(roman.RomanValueOf(i))
