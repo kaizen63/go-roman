@@ -3,26 +3,33 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
+	"log"
 	"strconv"
 
 	"github.com/kaizen63/go-roman/roman"
 )
 
-func main() {
+func parseCommandline() (max int, err error) {
 	flag.Parse()
 	args := flag.Args()
-	var max int
-	var err error
+	var e error
 	if len(args) > 0 {
-		max, err = strconv.Atoi(args[0])
-		if err != nil {
+		max, e = strconv.Atoi(args[0])
+		if e != nil {
 			fmt.Println(err)
-			os.Exit(1)
+			return 0, fmt.Errorf("wrong argument, got '%s' expecting integer value", args[0])
 		}
 	} else {
 		fmt.Println("usage: go-roman <max>")
-		os.Exit(1)
+		return 0, fmt.Errorf("usae: go-roman <max>")
+	}
+	return max, nil
+}
+
+func main() {
+	max, err := parseCommandline()
+	if err != nil {
+		log.Fatal(err)
 	}
 	for i := 1; i <= max; i++ {
 		fmt.Println(roman.Roman(i))
