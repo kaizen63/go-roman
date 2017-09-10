@@ -10,18 +10,18 @@ import (
 )
 
 func parseCommandline() (max int, err error) {
+	//fmt.Printf("Args: %s\n", strings.Join(os.Args[:], ","))
 	flag.Parse()
 	args := flag.Args()
+	//fmt.Printf("Args: %s\n", strings.Join(args[:], ","))
 	var e error
 	if len(args) > 0 {
 		max, e = strconv.Atoi(args[0])
 		if e != nil {
-			fmt.Println(err)
 			return 0, fmt.Errorf("wrong argument, got '%s' expecting integer value", args[0])
 		}
 	} else {
-		fmt.Println("usage: go-roman <max>")
-		return 0, fmt.Errorf("usae: go-roman <max>")
+		return 0, fmt.Errorf("usage: go-roman <max>")
 	}
 	return max, nil
 }
@@ -29,12 +29,7 @@ func parseCommandline() (max int, err error) {
 func main() {
 	max, err := parseCommandline()
 	if err != nil {
-		if flag.Lookup("test.v") == nil {
-			log.Fatal(err)
-		} else {
-			// testing
-			return
-		}
+		log.Fatal(err)
 	}
 	for i := 1; i <= max; i++ {
 		fmt.Println(roman.Roman(i))
