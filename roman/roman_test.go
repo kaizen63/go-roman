@@ -4015,24 +4015,42 @@ var tt = []struct {
 	{5000, "ↁ"},
 }
 
-func TestRomanValueOf(t *testing.T) {
+func TestRoman(t *testing.T) {
 	for _, ti := range tt {
-		roman := roman.RomanValueOf(ti.arabic)
+		roman := roman.Roman(ti.arabic)
 		if roman != ti.roman {
-			t.Errorf("RomanValueOf(%v) = %v, expected %v.", ti.arabic, roman, ti.roman)
+			t.Errorf("Roman(%v) = %v, expected %v.", ti.arabic, roman, ti.roman)
 		}
 	}
-	v := roman.RomanValueOf(-1)
+	v := roman.Roman(-1)
 	if v != "ROMAN_OUT_OF_RANGE" {
-		t.Errorf("ArabicValueOf(\"%v\" = %v, expected ROMAN_OUT_RANGE", -1, v)
+		t.Errorf("Arabic(\"%v\" = %v, expected ROMAN_OUT_RANGE", -1, v)
 	}
 }
 
-func TestArabicValueOf(t *testing.T) {
+func TestArabic(t *testing.T) {
 	for _, ti := range tt {
-		arabic := roman.ArabicValueOf(ti.roman)
+		arabic := roman.Arabic(ti.roman)
 		if arabic != ti.arabic {
-			t.Errorf("ArabicValueOf(\"%v\") = %v, expected %v.", ti.roman, arabic, ti.arabic)
+			t.Errorf("Arabic(\"%v\") = %v, expected %v.", ti.roman, arabic, ti.arabic)
+		}
+	}
+
+	if v := roman.Arabic("ABC123"); v != 0 {
+		t.Errorf("Arabic(\"ABC123\" returned %v expected nil.", v)
+	}
+}
+
+func TestIsRoman(t *testing.T) {
+	for _, ti := range tt {
+		if !roman.IsRoman(ti.roman) {
+			t.Errorf("IsRoman(\"%v\") = false, expected true.", ti.roman)
+		}
+	}
+	notRoman := []string{"", "A", "AA", "0", "1", "Z"}
+	for _, v := range notRoman {
+		if roman.IsRoman("A") {
+			t.Errorf("IsRoman(\"%v\") = true, expected false.", v)
 		}
 	}
 }

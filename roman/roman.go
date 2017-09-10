@@ -5,8 +5,23 @@ import (
 	"strings"
 )
 
-// RomanValueOf converts an integer to a roman string
-func RomanValueOf(n int) string {
+// Check if a string contains only roman characters
+func IsRoman(r string) bool {
+	rl := []string{"I", "V", "X", "L", "C", "D", "M", "ↁ", "ↁ"}
+	for _, c := range rl {
+		r = strings.Replace(r, c, "", -1)
+	}
+	if len(r) > 0 {
+		return false
+	}
+	return true
+}
+
+// Roman converts an integer to a roman string
+func Roman(n int) string {
+	if n < 1 {
+		return "ROMAN_OUT_OF_RANGE"
+	}
 	// +------+-----+-----+-----+-----+-----+-----+-----+-----+------+
 	// | Char |  I  |  V  |  X  |  L  |  C  |  D  |  M  |  ↁ  |  ↂ  |
 	// | Value|  1  |  5  | 10  | 50  | 100 | 500 | 1000| 5000| 10000|
@@ -31,12 +46,7 @@ func RomanValueOf(n int) string {
 		{"MMMM", "Mↁ"},
 		{"ↁↁ", "ↂ"},
 	}
-	if n < 1 {
-		return "ROMAN_OUT_OF_RANGE"
-	}
-
 	r := strings.Repeat("I", n)
-
 	for _, tt := range transTab {
 		r = strings.Replace(r, tt.old, tt.new, -1)
 	}
@@ -44,8 +54,10 @@ func RomanValueOf(n int) string {
 }
 
 // Convert the argument Roman string to an arabic integer.
-func ArabicValueOf(roman string) int {
-
+func Arabic(roman string) int {
+	if !IsRoman(roman) {
+		return 0
+	}
 	r2a := map[rune]int{
 		'I': 1,
 		'V': 5,

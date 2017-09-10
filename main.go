@@ -25,7 +25,7 @@ func main() {
 		os.Exit(1)
 	}
 	for i := 1; i <= max; i++ {
-		fmt.Println(roman.RomanValueOf(i))
+		fmt.Println(roman.Roman(i))
 	}
 
 }
