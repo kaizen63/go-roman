@@ -4,7 +4,7 @@
 # go-roman
 
 A small package to convert integers to roman numbers. The intersting bit is that the conversion into roman is not a mathematical solution. Its pure text processing.
-Kudos to Kevlin Hennley for this solution (although it was not in go)
+Kudos to [Kevlin Henney]()https://en.wikipedia.org/wiki/Kevlin_Henney for this solution (although it was not in go)
 
 This is a learning repo. Learn how to code [Go](http:///www.golang.org), how to test Go and now to integrate [GitHub](https://www.github.com) with [Travis](https://travis-ci.org) and [Coveralls](https://coveralls.io)
 ## Example
