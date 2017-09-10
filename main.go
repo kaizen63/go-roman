@@ -29,7 +29,12 @@ func parseCommandline() (max int, err error) {
 func main() {
 	max, err := parseCommandline()
 	if err != nil {
-		log.Fatal(err)
+		if flag.Lookup("test.v") == nil {
+			log.Fatal(err)
+		} else {
+			// testing
+			return
+		}
 	}
 	for i := 1; i <= max; i++ {
 		fmt.Println(roman.Roman(i))
